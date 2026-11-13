@@ -1,0 +1,15 @@
+# Deployment blueprint: Render Web Service
+services:
+  - type: web
+    name: tickets-mcp
+    runtime: node
+    buildCommand: npm install --global pnpm@10 && pnpm install --prod=false && pnpm build
+    startCommand: node dist/http.js
+    healthCheckPath: /health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: NODE_ENV
+        value: production
+      - key: MCP_API_TOKEN
+        sync: false
