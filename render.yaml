@@ -3,7 +3,7 @@ services:
   - type: web
     name: tickets-mcp
     runtime: node
-    buildCommand: npm install --global pnpm@10 && pnpm install --prod=false && pnpm build
+    buildCommand: corepack enable && pnpm install --prod=false && pnpm build
     startCommand: node dist/http.js
     healthCheckPath: /health
     envVars:
